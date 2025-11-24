@@ -1,0 +1,3 @@
+C:\Users\123pi\Documents\GitHub\Sortowanie-test\sortowanie-Test1\x64\Debug\gtest.pdb
+C:\Users\123pi\Documents\GitHub\Sortowanie-test\sortowanie-Test1\x64\Debug\gtest_main.pdb
+C:\Users\123pi\Documents\GitHub\Sortowanie-test\sortowanie-Test1\sortowanie-Test1\x64\Debug\sortowan.A1187D34.Up2Date
