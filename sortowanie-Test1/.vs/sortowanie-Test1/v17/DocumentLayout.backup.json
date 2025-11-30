@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{7E4756BA-0C17-4DAE-A926-0E35E9648589}|sortowanie-Test1.vcxproj|C:\\Users\\123pi\\Documents\\GitHub\\Sortowanie-test\\sortowanie-Test1\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7E4756BA-0C17-4DAE-A926-0E35E9648589}|sortowanie-Test1.vcxproj|solutionrelative:test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E4756BA-0C17-4DAE-A926-0E35E9648589}|sortowanie-Test1.vcxproj|C:\\Users\\123pi\\Documents\\GitHub\\Sortowanie-test\\sortowanie-Test1\\MergeSort.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7E4756BA-0C17-4DAE-A926-0E35E9648589}|sortowanie-Test1.vcxproj|solutionrelative:MergeSort.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MergeSort.h",
+              "DocumentMoniker": "C:\\Users\\123pi\\Documents\\GitHub\\Sortowanie-test\\sortowanie-Test1\\MergeSort.h",
+              "RelativeDocumentMoniker": "MergeSort.h",
+              "ToolTip": "C:\\Users\\123pi\\Documents\\GitHub\\Sortowanie-test\\sortowanie-Test1\\MergeSort.h",
+              "RelativeToolTip": "MergeSort.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-11-30T15:37:50.802Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "test.cpp",
               "ToolTip": "C:\\Users\\123pi\\Documents\\GitHub\\Sortowanie-test\\sortowanie-Test1\\test.cpp",
               "RelativeToolTip": "test.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACEBAAAAAAAAAAAUwEsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-24T14:09:49.096Z",
               "EditorCaption": ""
