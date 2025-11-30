@@ -24,6 +24,9 @@
   <ItemGroup>
     <ClInclude Include="..\src\MergeSort.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\MergeSort.tpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

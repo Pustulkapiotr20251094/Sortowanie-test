@@ -24,4 +24,9 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\MergeSort.tpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
+  </ItemGroup>
 </Project>

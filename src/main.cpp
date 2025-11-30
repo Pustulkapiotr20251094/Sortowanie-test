@@ -1,47 +1,36 @@
 #include <iostream>
 #include "MergeSort.h"
 
+template <typename T>
+void printArray(const T* array, int size)
+{
+    for (int i = 0; i < size; ++i)
+        std::cout << array[i] << " ";
+    std::cout << "\n";
+}
+
 int main()
 {
-    // Tablica z liczbami int
     int tabInt[] = { 5, 2, 9, 1, 5, 6 };
-    int sizeInt = sizeof(tabInt) / sizeof(tabInt[0]);
+    double tabDouble[] = { 3.14, -2.71, 0.0, 1.41, 2.71, 21.37, -987.0 };
 
-    // Tablica z liczbami double
-    double tabDouble[] = { 3.14, -2.71, 0.0, 1.41, 2.71, 21.37, -987 };
+    int sizeInt = sizeof(tabInt) / sizeof(tabInt[0]);
     int sizeDouble = sizeof(tabDouble) / sizeof(tabDouble[0]);
 
     std::cout << "Przed sortowaniem (int): ";
-    for (int i = 0; i < sizeInt; ++i)
-    {
-        std::cout << tabInt[i] << " ";
-    }
-    std::cout << "\n";
+    printArray(tabInt, sizeInt);
 
     std::cout << "Przed sortowaniem (double): ";
-    for (int i = 0; i < sizeDouble; ++i)
-    {
-        std::cout << tabDouble[i] << " ";
-    }
-    std::cout << "\n";
+    printArray(tabDouble, sizeDouble);
 
-    // Wywo³anie naszej klasy szablonowej
     MergeSort<int>::sort(tabInt, sizeInt);
     MergeSort<double>::sort(tabDouble, sizeDouble);
 
     std::cout << "Po sortowaniu (int): ";
-    for (int i = 0; i < sizeInt; ++i)
-    {
-        std::cout << tabInt[i] << " ";
-    }
-    std::cout << "\n";
+    printArray(tabInt, sizeInt);
 
     std::cout << "Po sortowaniu (double): ";
-    for (int i = 0; i < sizeDouble; ++i)
-    {
-        std::cout << tabDouble[i] << " ";
-    }
-    std::cout << "\n";
+    printArray(tabDouble, sizeDouble);
 
     return 0;
 }
