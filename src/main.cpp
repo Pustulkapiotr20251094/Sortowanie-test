@@ -1,6 +1,20 @@
+/**
+ * @file main.cpp
+ * @brief Prosty program demonstrujacy dzialanie szablonowej klasy MergeSort.
+ */
+
 #include <iostream>
 #include "MergeSort.h"
 
+ /**
+  * @brief Wypisuje wszystkie elementy tablicy na standardowe wyjscie.
+  *
+  * Elementy sa wypisywane w jednym wierszu, oddzielone pojedyncza spacja.
+  *
+  * @tparam T typ elementow przechowywanych w tablicy
+  * @param array wskaznik na pierwszy element tablicy
+  * @param size liczba elementow w tablicy
+  */
 template <typename T>
 void printArray(const T* array, int size)
 {
@@ -9,6 +23,15 @@ void printArray(const T* array, int size)
     std::cout << "\n";
 }
 
+/**
+ * @brief Glowna funkcja programu demonstrujacego sortowanie.
+ *
+ * Tworzy przykladowe tablice typu int oraz double, wypisuje ich
+ * zawartosc przed sortowaniem, nastepnie sortuje je za pomoca
+ * MergeSort<T>::sort i ponownie wypisuje posortowane wyniki.
+ *
+ * @return Kod wyjscia programu (0 oznacza poprawne zakonczenie).
+ */
 int main()
 {
     int tabInt[] = { 5, 2, 9, 1, 5, 6 };

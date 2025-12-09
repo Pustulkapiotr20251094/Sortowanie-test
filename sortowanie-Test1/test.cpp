@@ -1,13 +1,33 @@
+/**
+ * @file test.cpp
+ * @brief Zestaw testow jednostkowych dla szablonowej klasy MergeSort z wykorzystaniem Google Test.
+ *
+ * Plik zawiera testy dla dwoch typow danych: int oraz double.
+ * Testy sprawdzaja rozne scenariusze: tablice posortowane, odwrotnie posortowane,
+ * losowe dane, liczby ujemne, duplikaty oraz duze tablice.
+ */
+
 #include "pch.h"
 #include "MergeSort.h"
 
-// Pomocnicza funkcja: sprawdza czy tablica jest posortowana rosn¹co
+ /**
+  * @brief Pomocnicza funkcja sprawdzajaca, czy tablica jest posortowana rosnaco.
+  *
+  * Funkcja iteruje po elementach tablicy i sprawdza za pomoca EXPECT_LE,
+  * czy kazdy kolejny element nie jest mniejszy od poprzedniego.
+  * W razie bledu Google Test wygeneruje odpowiedni komunikat.
+  *
+  * @tparam T typ elementow w tablicy
+  * @param array wskaznik na pierwszy element tablicy
+  * @param size liczba elementow w tablicy
+  */
 template <typename T>
 void expectSortedAscending(const T* array, int size)
 {
     for (int i = 1; i < size; ++i)
     {
-        EXPECT_LE(array[i - 1], array[i]) << "Tablica nie jest posortowana na pozycji " << i;
+        EXPECT_LE(array[i - 1], array[i])
+            << "Tablica nie jest posortowana na pozycji " << i;
     }
 }
 
@@ -15,7 +35,10 @@ void expectSortedAscending(const T* array, int size)
 // ===== TESTY DLA int =====
 //
 
-// 1. zachowuje tablicê niezmienion¹, gdy ona jest ju¿ posortowana rosn¹co
+/**
+ * @test Sprawdza, czy algorytm zachowuje tablice int,
+ *       gdy jest ona juz posortowana rosnaco.
+ */
 TEST(MergeSortIntTests, KeepsAlreadySortedArray)
 {
     int arr[] = { 1, 2, 3, 4, 5 };
@@ -28,7 +51,10 @@ TEST(MergeSortIntTests, KeepsAlreadySortedArray)
         EXPECT_EQ(expected[i], arr[i]);
 }
 
-// 2. potrafi posortowaæ tablicê, która jest posortowana w odwrotnej kolejnoœci
+/**
+ * @test Sprawdza sortowanie tablicy int, ktora jest posortowana
+ *       w odwrotnej kolejnosci (malejaco).
+ */
 TEST(MergeSortIntTests, SortsReversedArray)
 {
     int arr[] = { 5, 4, 3, 2, 1 };
@@ -39,7 +65,10 @@ TEST(MergeSortIntTests, SortsReversedArray)
     expectSortedAscending(arr, size);
 }
 
-// 3. poprawnie sortuje losow¹ tablicê liczb
+/**
+ * @test Sprawdza sortowanie losowej tablicy int
+ *       z wartosciami dodatnimi, ujemnymi i zerem.
+ */
 TEST(MergeSortIntTests, SortsRandomArray)
 {
     int arr[] = { 10, -3, 7, 0, 5, -1, 8 };
@@ -50,7 +79,10 @@ TEST(MergeSortIntTests, SortsRandomArray)
     expectSortedAscending(arr, size);
 }
 
-// 4. poprawnie sortuje tablice tylko z liczbami ujemnymi
+/**
+ * @test Sprawdza poprawne sortowanie tablicy int zawierajacej
+ *       tylko liczby ujemne.
+ */
 TEST(MergeSortIntTests, SortsOnlyNegativeNumbers)
 {
     int arr[] = { -5, -10, -3, -1, -7 };
@@ -61,7 +93,10 @@ TEST(MergeSortIntTests, SortsOnlyNegativeNumbers)
     expectSortedAscending(arr, size);
 }
 
-// 5. poprawnie sortuje tablice z liczbami ujemnymi i liczbami dodatnimi
+/**
+ * @test Sprawdza sortowanie tablicy int zawierajacej
+ *       liczby ujemne i dodatnie.
+ */
 TEST(MergeSortIntTests, SortsNegativeAndPositiveNumbers)
 {
     int arr[] = { -5, 10, -3, 0, 7, -1, 2 };
@@ -72,17 +107,23 @@ TEST(MergeSortIntTests, SortsNegativeAndPositiveNumbers)
     expectSortedAscending(arr, size);
 }
 
-// 6. obs³uguje pust¹ tablicê bez rzucania wyj¹tkiem
+/**
+ * @test Sprawdza obsluge pustej tablicy int (wskaznik nullptr, rozmiar 0).
+ *       Test weryfikuje, ze nie wystepuje wyjatek ani blad wykonania.
+ */
 TEST(MergeSortIntTests, HandlesEmptyArray)
 {
     int* arr = nullptr;
     int size = 0;
 
     MergeSort<int>::sort(arr, size);
-    SUCCEED();
+    SUCCEED(); // jesli doszlismy tutaj, to nie bylo bledu
 }
 
-// 7. nie zmienia tablicy, która zawiera tylko jeden element
+/**
+ * @test Sprawdza, czy algorytm nie zmienia tablicy int zawierajacej
+ *       tylko jeden element.
+ */
 TEST(MergeSortIntTests, KeepsSingleElementArray)
 {
     int arr[] = { 42 };
@@ -93,7 +134,9 @@ TEST(MergeSortIntTests, KeepsSingleElementArray)
     EXPECT_EQ(42, arr[0]);
 }
 
-// 8. poprawnie sortuje tablicê z duplikatami liczb
+/**
+ * @test Sprawdza sortowanie tablicy int z duplikatami liczb.
+ */
 TEST(MergeSortIntTests, SortsArrayWithDuplicates)
 {
     int arr[] = { 5, 1, 3, 5, 2, 1, 5 };
@@ -104,7 +147,10 @@ TEST(MergeSortIntTests, SortsArrayWithDuplicates)
     expectSortedAscending(arr, size);
 }
 
-// 9. poprawnie sortuje tablice ujemn¹ z duplikatami
+/**
+ * @test Sprawdza sortowanie tablicy int zawierajacej liczby ujemne
+ *       z duplikatami.
+ */
 TEST(MergeSortIntTests, SortsNegativeArrayWithDuplicates)
 {
     int arr[] = { -5, -1, -5, -3, -1, -7 };
@@ -115,7 +161,10 @@ TEST(MergeSortIntTests, SortsNegativeArrayWithDuplicates)
     expectSortedAscending(arr, size);
 }
 
-// 10. poprawnie sortuje tablice z liczbami ujemnymi, dodatnimi oraz duplikatami
+/**
+ * @test Sprawdza sortowanie tablicy int zawierajacej liczby ujemne,
+ *       dodatnie oraz duplikaty.
+ */
 TEST(MergeSortIntTests, SortsMixedWithDuplicates)
 {
     int arr[] = { -5, 0, 3, -5, 2, 0, -1, 3 };
@@ -126,7 +175,10 @@ TEST(MergeSortIntTests, SortsMixedWithDuplicates)
     expectSortedAscending(arr, size);
 }
 
-// 11. poprawnie sortuje tablicê zawieraj¹c¹ tylko dwa elementy w kolejnoœci rosn¹cej
+/**
+ * @test Sprawdza, czy algorytm zachowuje dwuelementowa tablice int,
+ *       ktora jest juz posortowana rosnaco.
+ */
 TEST(MergeSortIntTests, KeepsTwoElementsSorted)
 {
     int arr[] = { 1, 2 };
@@ -138,22 +190,28 @@ TEST(MergeSortIntTests, KeepsTwoElementsSorted)
     EXPECT_EQ(2, arr[1]);
 }
 
-// 12. poprawnie sortuje du¿¹ tablicê zawieraj¹c¹ ponad 100 elementów
+/**
+ * @test Sprawdza sortowanie duzej tablicy int (150 elementow),
+ *       poczatkowo posortowanej malejaco.
+ */
 TEST(MergeSortIntTests, SortsLargeArray)
 {
     const int N = 150;
     int arr[N];
 
+    // Tablica od N do 1 (odwrotnie posortowana)
     for (int i = 0; i < N; ++i)
-        arr[i] = N - i; // odwrotnie posortowana
+        arr[i] = N - i;
 
     MergeSort<int>::sort(arr, N);
 
     expectSortedAscending(arr, N);
 }
 
-// 13. poprawnie sortuje du¿¹ tablicê zawieraj¹c¹ ponad 100 elementów
-// z liczbami ujemnymi, dodatnimi oraz duplikatami
+/**
+ * @test Sprawdza sortowanie duzej tablicy int (200 elementow)
+ *       z wartosciami ujemnymi, dodatnimi oraz duplikatami.
+ */
 TEST(MergeSortIntTests, SortsLargeArrayWithNegativesAndDuplicates)
 {
     const int N = 200;
@@ -172,10 +230,13 @@ TEST(MergeSortIntTests, SortsLargeArrayWithNegativesAndDuplicates)
 
 //
 // ===== TESTY DLA double =====
-//  (te same przypadki co wy¿ej, ale dla typu double)
+//  (te same przypadki co wyzej, ale dla typu double)
 //
 
-// 1. zachowuje tablicê niezmienion¹, gdy ona jest ju¿ posortowana rosn¹co
+/**
+ * @test Sprawdza, czy algorytm zachowuje tablice double,
+ *       gdy jest ona juz posortowana rosnaco.
+ */
 TEST(MergeSortDoubleTests, KeepsAlreadySortedArray)
 {
     double arr[] = { 1.0, 2.0, 3.0, 4.0, 5.0 };
@@ -188,7 +249,10 @@ TEST(MergeSortDoubleTests, KeepsAlreadySortedArray)
         EXPECT_EQ(expected[i], arr[i]);
 }
 
-// 2. potrafi posortowaæ tablicê, która jest posortowana w odwrotnej kolejnoœci
+/**
+ * @test Sprawdza sortowanie tablicy double, ktora jest posortowana
+ *       w odwrotnej kolejnosci (malejaco).
+ */
 TEST(MergeSortDoubleTests, SortsReversedArray)
 {
     double arr[] = { 5.0, 4.0, 3.0, 2.0, 1.0 };
@@ -199,7 +263,9 @@ TEST(MergeSortDoubleTests, SortsReversedArray)
     expectSortedAscending(arr, size);
 }
 
-// 3. poprawnie sortuje losow¹ tablicê liczb
+/**
+ * @test Sprawdza sortowanie losowej tablicy double.
+ */
 TEST(MergeSortDoubleTests, SortsRandomArray)
 {
     double arr[] = { 10.0, -3.0, 7.0, 0.0, 5.0, -1.0, 8.0 };
@@ -210,7 +276,10 @@ TEST(MergeSortDoubleTests, SortsRandomArray)
     expectSortedAscending(arr, size);
 }
 
-// 4. poprawnie sortuje tablice tylko z liczbami ujemnymi
+/**
+ * @test Sprawdza sortowanie tablicy double zawierajacej
+ *       tylko liczby ujemne.
+ */
 TEST(MergeSortDoubleTests, SortsOnlyNegativeNumbers)
 {
     double arr[] = { -5.0, -10.0, -3.0, -1.0, -7.0 };
@@ -221,7 +290,10 @@ TEST(MergeSortDoubleTests, SortsOnlyNegativeNumbers)
     expectSortedAscending(arr, size);
 }
 
-// 5. poprawnie sortuje tablice z liczbami ujemnymi i liczbami dodatnimi
+/**
+ * @test Sprawdza sortowanie tablicy double zawierajacej liczby
+ *       ujemne i dodatnie.
+ */
 TEST(MergeSortDoubleTests, SortsNegativeAndPositiveNumbers)
 {
     double arr[] = { -5.0, 10.0, -3.0, 0.0, 7.0, -1.0, 2.0 };
@@ -232,7 +304,9 @@ TEST(MergeSortDoubleTests, SortsNegativeAndPositiveNumbers)
     expectSortedAscending(arr, size);
 }
 
-// 6. obs³uguje pust¹ tablicê bez rzucania wyj¹tkiem
+/**
+ * @test Sprawdza obsluge pustej tablicy double (nullptr, rozmiar 0).
+ */
 TEST(MergeSortDoubleTests, HandlesEmptyArray)
 {
     double* arr = nullptr;
@@ -242,7 +316,10 @@ TEST(MergeSortDoubleTests, HandlesEmptyArray)
     SUCCEED();
 }
 
-// 7. nie zmienia tablicy, która zawiera tylko jeden element
+/**
+ * @test Sprawdza, czy algorytm nie zmienia tablicy double
+ *       zawierajacej tylko jeden element.
+ */
 TEST(MergeSortDoubleTests, KeepsSingleElementArray)
 {
     double arr[] = { 42.0 };
@@ -253,7 +330,9 @@ TEST(MergeSortDoubleTests, KeepsSingleElementArray)
     EXPECT_EQ(42.0, arr[0]);
 }
 
-// 8. poprawnie sortuje tablicê z duplikatami liczb
+/**
+ * @test Sprawdza sortowanie tablicy double z duplikatami liczb.
+ */
 TEST(MergeSortDoubleTests, SortsArrayWithDuplicates)
 {
     double arr[] = { 5.0, 1.0, 3.0, 5.0, 2.0, 1.0, 5.0 };
@@ -264,7 +343,10 @@ TEST(MergeSortDoubleTests, SortsArrayWithDuplicates)
     expectSortedAscending(arr, size);
 }
 
-// 9. poprawnie sortuje tablice ujemn¹ z duplikatami
+/**
+ * @test Sprawdza sortowanie tablicy double zawierajacej liczby ujemne
+ *       z duplikatami.
+ */
 TEST(MergeSortDoubleTests, SortsNegativeArrayWithDuplicates)
 {
     double arr[] = { -5.0, -1.0, -5.0, -3.0, -1.0, -7.0 };
@@ -275,7 +357,10 @@ TEST(MergeSortDoubleTests, SortsNegativeArrayWithDuplicates)
     expectSortedAscending(arr, size);
 }
 
-// 10. poprawnie sortuje tablice z liczbami ujemnymi, dodatnimi oraz duplikatami
+/**
+ * @test Sprawdza sortowanie tablicy double z liczbami ujemnymi,
+ *       dodatnimi oraz duplikatami.
+ */
 TEST(MergeSortDoubleTests, SortsMixedWithDuplicates)
 {
     double arr[] = { -5.0, 0.0, 3.0, -5.0, 2.0, 0.0, -1.0, 3.0 };
@@ -286,7 +371,10 @@ TEST(MergeSortDoubleTests, SortsMixedWithDuplicates)
     expectSortedAscending(arr, size);
 }
 
-// 11. poprawnie sortuje tablicê zawieraj¹c¹ tylko dwa elementy w kolejnoœci rosn¹cej
+/**
+ * @test Sprawdza, czy algorytm zachowuje dwuelementowa tablice double,
+ *       ktora jest juz posortowana rosnaco.
+ */
 TEST(MergeSortDoubleTests, KeepsTwoElementsSorted)
 {
     double arr[] = { 1.0, 2.0 };
@@ -298,7 +386,10 @@ TEST(MergeSortDoubleTests, KeepsTwoElementsSorted)
     EXPECT_EQ(2.0, arr[1]);
 }
 
-// 12. poprawnie sortuje du¿¹ tablicê zawieraj¹c¹ ponad 100 elementów
+/**
+ * @test Sprawdza sortowanie duzej tablicy double (150 elementow),
+ *       poczatkowo posortowanej malejaco.
+ */
 TEST(MergeSortDoubleTests, SortsLargeArray)
 {
     const int N = 150;
@@ -312,8 +403,10 @@ TEST(MergeSortDoubleTests, SortsLargeArray)
     expectSortedAscending(arr, N);
 }
 
-// 13. poprawnie sortuje du¿¹ tablicê zawieraj¹c¹ ponad 100 elementów
-// z liczbami ujemnymi, dodatnimi oraz duplikatami
+/**
+ * @test Sprawdza sortowanie duzej tablicy double (200 elementow)
+ *       z wartosciami od -10 do 9 (ujemne, dodatnie, duplikaty).
+ */
 TEST(MergeSortDoubleTests, SortsLargeArrayWithNegativesAndDuplicates)
 {
     const int N = 200;

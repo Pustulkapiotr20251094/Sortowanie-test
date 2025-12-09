@@ -1,3 +1,11 @@
+/**
+ * @file MergeSort.tpp
+ * @brief Definicje metod szablonowej klasy MergeSort.
+ *
+ * Plik zawiera definicje wszystkich metod szablonowych klasy MergeSort<T>.
+ * Jest dolaczany na koncu pliku naglowkowego MergeSort.h.
+ */
+
 // Definicje metod szablonu MergeSort
 
 template <typename T>
@@ -32,11 +40,11 @@ void MergeSort<T>::merge(T* array, int left, int mid, int right)
     T* leftArray = new T[sizeLeft];
     T* rightArray = new T[sizeRight];
 
-    // Kopiowanie lewej czêœci
+    // Kopiowanie lewej czesci
     for (int i = 0; i < sizeLeft; ++i)
         leftArray[i] = array[left + i];
 
-    // Kopiowanie prawej czêœci
+    // Kopiowanie prawej czesci
     for (int j = 0; j < sizeRight; ++j)
         rightArray[j] = array[mid + 1 + j];
 
@@ -44,7 +52,7 @@ void MergeSort<T>::merge(T* array, int left, int mid, int right)
     int j = 0;        // indeks w rightArray
     int k = left;     // indeks w tablicy wynikowej 'array'
 
-    // Scalanie dwóch posortowanych czêœci
+    // Scalanie dwoch posortowanych czesci
     while (i < sizeLeft && j < sizeRight)
     {
         if (leftArray[i] <= rightArray[j])
@@ -60,7 +68,7 @@ void MergeSort<T>::merge(T* array, int left, int mid, int right)
         ++k;
     }
 
-    // Kopiowanie pozosta³ych elementów z lewej tablicy (jeœli s¹)
+    // Kopiowanie pozostalych elementow z lewej tablicy (jesli sa)
     while (i < sizeLeft)
     {
         array[k] = leftArray[i];
@@ -68,7 +76,7 @@ void MergeSort<T>::merge(T* array, int left, int mid, int right)
         ++k;
     }
 
-    // Kopiowanie pozosta³ych elementów z prawej tablicy (jeœli s¹)
+    // Kopiowanie pozostalych elementow z prawej tablicy (jesli sa)
     while (j < sizeRight)
     {
         array[k] = rightArray[j];
